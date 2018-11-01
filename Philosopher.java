@@ -1,7 +1,7 @@
 package dp;
 
 class Philosopher extends Thread {
-
+	final int sleeptime = 10000;
 	private Fork fork_right;
 	private Fork fork_left;
 	private String name;
@@ -16,7 +16,7 @@ class Philosopher extends Thread {
 
 		try {
 			System.out.println(name + "........thinking");
-			sleep(10000);
+			sleep(sleeptime);
 		} catch (InterruptedException ex) {
 		}
 
@@ -30,18 +30,18 @@ class Philosopher extends Thread {
 			if (fork_left.take()) {
 				try {
 					System.out.println(name + "is eating........");
-					sleep(10000);
+					sleep(sleeptime);
 				} catch (InterruptedException ex) {
 				}
-				fork_left.putDown();
 				System.out.println(name + "......put left fork");
-				fork_right.putDown();
+				fork_left.putDown();
 				System.out.println(name + "......put right fork");
+				fork_right.putDown();
 
-			} /*else {
-				fork_right.putDown();
+			} else {
 				System.out.println(name + "......put right fork");
-			}*/
+				fork_right.putDown();
+			}
 		}
 	}
 }

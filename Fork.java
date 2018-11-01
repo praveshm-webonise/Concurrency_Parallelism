@@ -3,7 +3,8 @@ package dp;
 import java.util.concurrent.Semaphore;
 
 class Fork {
-	public Semaphore fork = new Semaphore(1);
+	int limit = 1;
+	public Semaphore fork = new Semaphore(limit);
 	public int id;
 
 	Fork(int id) {
